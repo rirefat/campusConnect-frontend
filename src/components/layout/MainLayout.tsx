@@ -1,6 +1,5 @@
 import React from 'react';
-// import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
-import { Layout, Menu, theme } from 'antd';
+import { Layout, Menu } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 
 const items = [
@@ -32,10 +31,6 @@ const logoStyle:React.CSSProperties = {
 };
 
 const MainLayout: React.FC = () => {
-    const {
-        token: { colorBgContainer, borderRadiusLG },
-    } = theme.useToken();
-
     return (
         <Layout style={{ height: '100vh' }}>
             <Sider
@@ -69,7 +64,7 @@ const MainLayout: React.FC = () => {
                     </div>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
-                    RIR © {new Date().getFullYear()} Developed by Rafiul Islam
+                    Campus Connect © {new Date().getFullYear()} Developed by Rafiul Islam
                 </Footer>
             </Layout>
         </Layout>
