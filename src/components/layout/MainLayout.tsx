@@ -18,7 +18,7 @@ const MainLayout: React.FC = () => {
   } = theme.useToken();
 
   return (
-    <Layout>
+    <Layout style={{height: '100vh'}}>
       <Sider
         breakpoint="lg"
         collapsedWidth="0"
@@ -33,14 +33,12 @@ const MainLayout: React.FC = () => {
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={items} />
       </Sider>
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }} />
+        <Header style={{ padding: 0 }} />
         <Content style={{ margin: '24px 16px 0' }}>
           <div
             style={{
               padding: 24,
               minHeight: 360,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
             }}
           >
             content
