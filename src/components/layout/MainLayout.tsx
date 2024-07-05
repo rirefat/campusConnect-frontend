@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 const { Header, Content, Footer, Sider } = Layout;
 
 const items = [
@@ -17,7 +17,7 @@ const items = [
         label: "User Management",
         children: [
             { key: 1, label: "Create user" },
-            { key: 2, label: "Create student" },
+            { key: 2, label: <NavLink to={'/create-student'}>Create Student</NavLink> },
         ],
     },
 ];
