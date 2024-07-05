@@ -39,12 +39,7 @@ const adminPaths = [
                 name: 'Create Student',
                 path: 'create-student',
                 element: <CreateStudent />,
-            },
-            {
-                name: 'Create Member',
-                path: 'create-member',
-                element: <CreateStudent />,
-            },
+            }
         ],
     },
 ];
