@@ -1,28 +1,11 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { adminSidebarItems } from '../../routes/admin.routes';
 const { Header, Content, Footer, Sider } = Layout;
 
-const items = [
-    {
-        key: crypto.randomUUID(),
-        label: "Dashboard"
-    },
-    {
-        key: crypto.randomUUID(),
-        label: "Profile"
-    },
-    {
-        key: crypto.randomUUID(),
-        label: "User Management",
-        children: [
-            { key: 1, label: "Create user" },
-            { key: 2, label: <NavLink to={'/create-student'}>Create Student</NavLink> },
-        ],
-    },
-];
 
-const logoStyle:React.CSSProperties = {
+const logoStyle: React.CSSProperties = {
     color: "whitesmoke",
     textAlign: "center",
     height: "5rem",
@@ -50,7 +33,7 @@ const MainLayout: React.FC = () => {
                 <div className="logo logoStyle" style={logoStyle}>
                     <h1>CampusConnect</h1>
                 </div>
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={items} />
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={adminSidebarItems} />
             </Sider>
             <Layout>
                 <Header style={{ padding: 0 }} />
@@ -61,7 +44,7 @@ const MainLayout: React.FC = () => {
                             minHeight: 360,
                         }}
                     >
-                        <Outlet/>
+                        <Outlet />
                     </div>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
