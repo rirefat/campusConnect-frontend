@@ -4,6 +4,8 @@ import { sidebarItemsGenerator } from "../../utils/SidebarItemsGenerator";
 import { adminPaths } from "../../routes/admin.routes";
 import { facultyPaths } from "../../routes/faculty.routes";
 import { studentPaths } from "../../routes/student.routes";
+import { ItemType, MenuItemType } from "antd/es/menu/interface";
+import { TSidebarItem } from "../../type";
 
 const logoStyle: React.CSSProperties = {
     color: "whitesmoke",
@@ -20,7 +22,7 @@ const userRole = {
     STUDENT: 'student'
 };
 const role = 'faculty';
-let sidebarItem;
+let sidebarItem: TSidebarItem[] | ItemType<MenuItemType>[] | undefined;
 
 switch (role) {
     case userRole.ADMIN:
