@@ -4,9 +4,6 @@ import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 const { Header, Content, Footer } = Layout;
 
-
-
-
 const MainLayout: React.FC = () => {
     return (
         <Layout style={{ height: '100vh' }}>
