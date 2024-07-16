@@ -2,6 +2,9 @@ import type { FormProps } from 'antd';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Button, Checkbox, Form, Input } from 'antd';
 import { useLoginMutation } from '../redux/features/auth/authApi';
+import { decodeToken } from '../utils/decodeToken';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../redux/features/auth/authSlice';
 
 type FieldType = {
     id?: string;
@@ -11,14 +14,16 @@ type FieldType = {
 
 
 const Login = () => {
-    const [login, {data, error}] = useLoginMutation();
-    console.log(data)
-    console.log(error)
+    const [login, { error }] = useLoginMutation();
+    const dispatch = useDispatch();
 
-    const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-        login(values)
+    const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
+        const response = await login(values).unwrap();
+        const userData = decodeToken(response.data.accessToken);
+        console.log(userData);
+        dispatch(setUser({ user: userData, token: response.data.accessToken }))
     };
-    
+
     const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
