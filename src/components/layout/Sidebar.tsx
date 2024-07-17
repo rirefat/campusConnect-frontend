@@ -6,15 +6,7 @@ import { facultyPaths } from "../../routes/faculty.routes";
 import { studentPaths } from "../../routes/student.routes";
 import { ItemType, MenuItemType } from "antd/es/menu/interface";
 import { TSidebarItem } from "../../type";
-
-const logoStyle: React.CSSProperties = {
-    color: "whitesmoke",
-    textAlign: "center",
-    height: "5rem",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
-};
+import campusConnectLogo from '../../assets/images/campusConnect-logo-full-removebg-preview.png';
 
 const userRole = {
     ADMIN: 'admin',
@@ -52,8 +44,17 @@ const Sidebar = () => {
             <div className="demo-logo-vertical" />
 
             {/* Logo section */}
-            <div className="logo logoStyle" style={logoStyle}>
-                <h1>CampusConnect</h1>
+            <div
+                className="logo logoStyle"
+                style={{
+                    width: '100%',
+                    height: "4.5rem",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}>
+                {/* <h1>CampusConnect</h1> */}
+                <img src={campusConnectLogo} alt="" style={{ width: '100%' }} />
             </div>
             <Menu
                 theme="dark"

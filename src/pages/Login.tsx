@@ -5,6 +5,7 @@ import { useLoginMutation } from '../redux/features/auth/authApi';
 import { decodeToken } from '../utils/decodeToken';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../redux/features/auth/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 type FieldType = {
     id?: string;
@@ -17,12 +18,14 @@ const Login = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [login, { error }] = useLoginMutation();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
         const response = await login(values).unwrap();
         const userData = decodeToken(response.data.accessToken);
         console.log(userData);
-        dispatch(setUser({ user: userData, token: response.data.accessToken }))
+        dispatch(setUser({ user: userData, token: response.data.accessToken }));
+        navigate('/');
     };
 
     const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
