@@ -1,11 +1,13 @@
 import type { FormProps } from 'antd';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Form, Input } from 'antd';
+// import {  Checkbox} from 'antd';
 import { useLoginMutation } from '../redux/features/auth/authApi';
 import { decodeToken } from '../utils/decodeToken';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../redux/features/auth/authSlice';
+import { setUser, TUser } from '../redux/features/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 type FieldType = {
     id?: string;
@@ -13,19 +15,28 @@ type FieldType = {
     remember?: string;
 };
 
-
 const Login = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [login, { error }] = useLoginMutation();
+    const [login] = useLoginMutation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
-        const response = await login(values).unwrap();
-        const userData = decodeToken(response.data.accessToken);
-        console.log(userData);
-        dispatch(setUser({ user: userData, token: response.data.accessToken }));
-        navigate('/');
+        try {
+            const response = await login(values).unwrap();
+            const userData = decodeToken(response.data.accessToken) as TUser;
+            console.log(userData);
+            dispatch(setUser({ user: userData, token: response.data.accessToken }));
+
+            if (userData.role === 'admin' || userData.role === "superAdmin") {
+                navigate(`/admin/dashboard`);
+            } else {
+                navigate(`/${userData?.role}/dashboard`);
+            }
+            toast.success('Successfully logged in');
+        } catch (err) {
+            toast.error('Something went wrong!');
+        }
     };
 
     const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
