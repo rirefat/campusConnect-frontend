@@ -14,6 +14,7 @@ type FieldType = {
 
 
 const Login = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [login, { error }] = useLoginMutation();
     const dispatch = useDispatch();
 
