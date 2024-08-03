@@ -59,7 +59,7 @@ const Login = () => {
                 name="id"
                 rules={[{ required: true, message: 'Please input your id!' }]}
             >
-                <Input />
+                <Input defaultValue={"0001"}/>
             </Form.Item>
 
             <Form.Item<FieldType>
@@ -67,7 +67,7 @@ const Login = () => {
                 name="password"
                 rules={[{ required: true, message: 'Please input your password!' }]}
             >
-                <Input.Password />
+                <Input.Password defaultValue={"admin12345"}/>
             </Form.Item>
 
             {/* <Form.Item<FieldType>
